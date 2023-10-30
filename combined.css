@@ -1,0 +1,129 @@
+/* From file 1 */
+body, html {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+canvas {
+    display: block;
+    background-color: black;
+    position: relative;
+    z-index: 1;  /* Ensure the canvas is below the menu overlay */
+}
+
+#menuOverlay { 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 2;  /* Ensure the menu overlay is above the canvas */
+}
+
+.menuStream {
+    color: #00FF00;  /* Matrix green */
+    font-weight: bold;  /* Make it stand out */
+    cursor: pointer;  /* Indicate interactivity */
+    font-size: 2em;  /* Adjust size as needed */
+    position: absolute; /* Position the menu items */
+}
+
+.menuStream:hover {
+    color: #FFFFFF;  /* Change color on hover */
+}
+
+@keyframes menuMatrixEffect {
+    0% { color: #00FF00; }
+    50% { color: #FFFFFF; }
+    100% { color: #00FF00; }
+}
+
+#menuOverlay .menuStream .menuMatrixText{
+    animation: menuMatrixEffect 2s infinite alternate;
+    display: inline-block;
+}
+
+.menuStream:hover .menuMatrixText {
+    animation-play-state: paused;
+    color: #FFFFFF; /* Set a static color on hover */
+}
+
+/* From file 2 */
+#menuOverlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.menuStream {
+    position: relative;
+    color: #00FF00;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 2em;
+    transition: all 0.5s ease;
+    margin: 10px 0;
+}
+
+.console {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.8);
+    margin: 10px 10px 10px 25px; /* Added 25px left margin */
+    border-radius: 10px;
+    z-index: 3;
+    width: 500px;
+    height: 300px; /* Set a fixed height */
+    overflow-y: auto; /* Make it scrollable */
+    font-family: 'Courier New', Courier, monospace; /* Console-like font */
+    font-size: 0.8em; /* Smaller font size */
+    color: #00FF00; /* Green text */
+    background-color: #000; /* Black background */
+}
+
+.consoleCommand, .consoleOutput div {
+    margin-bottom: 5px; /* Space between lines */
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.consoleCursor {
+    animation: blink 533ms infinite;
+    display: inline-block;
+    background-color: #00FF00;
+    width: 18px;
+    height: .90em;
+}
+
+.consoleCommand {
+    color: #00FF00;
+    display: block;
+}
+
+.consoleOutput {
+    display: block;
+    padding: 0;
+    margin: 0;
+}
