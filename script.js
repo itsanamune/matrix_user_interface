@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-
+    console.log('DOMContentLoaded event fired.');
     const menuStreams = document.querySelectorAll('.menuStream');
     let currentDirectory = '';
     const typingSpeed = 150;
@@ -13,6 +13,18 @@ document.addEventListener('DOMContentLoaded', function() {
             let typedCommand = '';
             let charIndex = 0;
 
+
+// Select the menu
+const menu = document.querySelector('#menuOverlay');
+
+
+// Attach the clickHandler to the .menuMatrixText elements
+const matrixTextElements = document.querySelectorAll('.menuMatrixText');
+matrixTextElements.forEach((matrixText) => {
+    matrixText.addEventListener('click', clickHandler);
+});
+
+            
             // Play the typing sound
             typingSound.play();
 
@@ -57,56 +69,59 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-   function clickHandler(event) {
-    console.log("Matrix menu item clicked."); // Diagnostic log
+    function clickHandler(event) {
+        console.log("Matrix menu item clicked."); // Diagnostic log
 
-    event.stopPropagation();
+        event.stopPropagation();
 
-    // Hide all open consoles
-    document.querySelectorAll('.console').forEach((consoleElem) => {
-        consoleElem.style.display = 'none';
-    });
-
-    // Find the parent .menuStream of the clicked .menuMatrixText
-    const stream = this.closest('.menuStream');
-    console.log("Clicked element:", this);
-    console.log("Closest .menuStream found:", stream);
-    console.log("Children of .menuStream:", stream.children);
-
-    // Get the console element for the clicked menu stream
-    const consoleElement = stream.querySelector('.console');
-
-    if (!consoleElement) {
-        console.error("Console element not found for stream:", stream);
-        return;
-    }
-
-    // Use the firstChild's nodeValue to get the menu item's name
-    const streamText = this.firstChild.nodeValue.trim();
-    const commandToType = currentDirectory === streamText ? 'DIR' : `CD C:\\${streamText}`;
-
-    console.debug(`Menu item clicked: ${streamText}`);
-
-    promiseChain = promiseChain
-        .then(() => {
-            console.log("Clearing console content."); // Diagnostic log
-            consoleElement.innerHTML = ''; // Clear the console's content
-            consoleElement.style.display = 'block';
-            const initialCommandDiv = document.createElement('div');
-            consoleElement.appendChild(initialCommandDiv);
-            return typeCommand(commandToType, initialCommandDiv, streamText);
-        })
-        .then(() => {
-            console.log("Displaying submenu items."); // Diagnostic log
-            if (commandToType.startsWith('CD')) {
-                currentDirectory = streamText;
-            }
-            return displaySubmenuItems(consoleElement);
-        })
-        .catch(error => {
-            console.error("Error in promise chain:", error); // Catch any errors in the promise chain
+        // Hide all open consoles
+        document.querySelectorAll('.console').forEach((consoleElem) => {
+            consoleElem.style.display = 'none';
         });
-}
+
+        // Find the parent .menuStream of the clicked .menuMatrixText
+        const stream = this.closest('.menuStream');
+
+        // Get the console element for the clicked menu stream
+        const consoleElement = stream.querySelector('.console');
+
+        // Show the console for the clicked menu item
+        consoleElement.style.display = 'block';
+
+        console.log("Clicked element:", this);
+        console.log("Closest .menuStream found:", stream);
+        console.log("Children of .menuStream:", stream.children);
+
+        if (!consoleElement) {
+            console.error("Console element not found for stream:", stream);
+            return;
+        }
+
+        // Use the firstChild's nodeValue to get the menu item's name
+        const streamText = this.firstChild.nodeValue.trim();
+        const commandToType = currentDirectory === streamText ? 'DIR' : `CD C:\\${streamText}`;
+
+        console.debug(`Menu item clicked: ${streamText}`);
+
+        promiseChain = promiseChain
+            .then(() => {
+                console.log("Clearing console content."); // Diagnostic log
+                consoleElement.innerHTML = ''; // Clear the console's content
+                const initialCommandDiv = document.createElement('div');
+                consoleElement.appendChild(initialCommandDiv);
+                return typeCommand(commandToType, initialCommandDiv, streamText);
+            })
+            .then(() => {
+                console.log("Displaying submenu items."); // Diagnostic log
+                if (commandToType.startsWith('CD')) {
+                    currentDirectory = streamText;
+                }
+                return displaySubmenuItems(consoleElement);
+            })
+            .catch(error => {
+                console.error("Error in promise chain:", error); // Catch any errors in the promise chain
+            });
+    }
 
 
     // Attach the clickHandler to the .menuMatrixText elements
@@ -126,4 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log("Error playing sound:", e);
         });
     }
+    document.querySelectorAll('.menuMatrixText').forEach((element) => {
+        element.addEventListener('click', clickHandler);
+    });
 });
