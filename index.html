@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+        <title>Matrix Digital Rain with Menu</title>
+        <link href="combined.css" rel="stylesheet" type="text/css"/>
+    </head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Matrix Digital Rain with Menu</title>
+<link href="combined.css" rel="stylesheet" type="text/css"/>
+
+<body>
+<div id="menuOverlay">
+    <div id="hamburgerButton">
+        <div class="hamburger-line right"></div>
+        <div class="hamburger-line middle"></div>
+        <div class="hamburger-line right"></div>
+    </div>
+    <!-- Your .menuStream elements go here -->
+</div>
+    <!-- Canvas element for graphical content, for a matrix background effect -->
+    <canvas id="matrixCanvas"></canvas>
+
+    <!-- Overlay for the menu -->
+    <div id="menuOverlay">
+        
+
+        <!-- Draggable menu item for the portfolio menu section -->
+        <div class="menuStream draggable">
+            <!-- Menu title -->
+            <span class="menuMatrixText">PORTFOLIO</span>
+            <!-- Console for the portfolio section -->
+            <div class="console" id="PortfolioConsole">
+                
+            </div>
+        </div>
+
+        <!-- Draggable menu item for the contact menu section -->
+        <div class="menuStream draggable">
+            <!-- Menu title -->
+            <span class="menuMatrixText">CONTACT</span>
+            <!-- Console for the contact section -->
+            <div class="console" id="ContactConsole">
+                
+            </div>
+        </div>
+
+        <!-- Draggable menu item for the about menu section -->
+        <div class="menuStream draggable">
+            <!-- Menu title -->
+            <span class="menuMatrixText">ABOUT</span>
+            <!-- Console for the about section -->
+            <div class="console" id="AboutConsole">
+                
+            </div>
+        </div>
+
+        <!-- Draggable menu item for the info menu section -->
+        <div class="menuStream draggable">
+            <!-- Menu title -->
+            <span class="menuMatrixText">INFO</span>
+            <!-- Console for the info section -->
+            <div class="console" id="InfoConsole">
+               
+            </div>
+        </div>
+    <!-- Audio element for typing sound effect -->
+    <audio id="typingAudio" preload="auto">
+        <source src="assets/keyboard_loop.mp3" type="audio/mp3"/>
+    </audio>
+
+    <!-- Audio element for print sound effect -->
+    <audio id="printAudio" preload="auto">
+        <source src="assets/print_sound.mp3" type="audio/mp3"/>
+    </audio>
+</body>
+
+<!-- Closing HTML tag -->
+</html>
+
+<!-- JavaScript file for matrix effect -->
+<script src="matrix.js"></script>
+
+<!-- General JavaScript file -->
+<script src="script.js"></script>
+
+<!-- JavaScript file for menu functionality -->
+<script src="menu.js"></script>
+
+ <!-- The hamburger_menu.js file -->
+ <script src="hamburger_menu.js"></script>
+

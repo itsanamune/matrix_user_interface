@@ -1,0 +1,274 @@
+
+/* Importing a Google font */
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@700&display=swap');
+
+/* Setting the font, letter spacing, and boldness for the body */
+body {
+    font-family: 'Courier Prime', monospace;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+}
+
+/* Setting the height, margin, and overflow for the body and html */
+body, html {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+/* Styling the canvas element */
+canvas {
+    display: block;
+    background-color: black;
+    position: relative;
+    z-index: 1;  /* Ensure the canvas is below the menu overlay */
+}
+
+/* Styling the menu overlay */
+#menuOverlay { 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto; /* Adjust the height */
+    display: flex;
+    flex-direction: row; /* Align the items horizontally */
+    justify-content: flex-start; /* Align items to the left */
+    align-items: center; /* Center items vertically */
+    z-index: 2;  /* Ensure the menu overlay is above the canvas */
+    padding: 10px; /* Add some padding around the items */
+    background-color: #000; /* Add a background color */
+}
+
+/* Styling the menu stream */
+.menuStream {
+    display: block; /* Display the menu stream as a block */
+    color: #00FF00;  /* Matrix green */
+    font-weight: bold;  /* Make it stand out */
+    cursor: pointer;  /* Indicate interactivity */
+    font-size: 1em;  /* Adjust size as needed */
+    position: relative; /* Change to relative */
+    margin-right: 20px; /* Add some space to the right of each item */
+}
+
+/* Styling the menu stream on hover */
+.menuStream:hover {
+    color: #FFFFFF;  /* Change color on hover */
+}
+
+/* Defining a keyframes animation for the menu matrix effect */
+@keyframes menuMatrixEffect {
+    0% { color: #00FF00; }
+    50% { color: #FFFFFF; }
+    100% { color: #00FF00; }
+}
+
+/* Applying the animation to the menu matrix text */
+#menuOverlay .menuStream .menuMatrixText{
+    animation: menuMatrixEffect 2s infinite alternate;
+    display: inline-block;
+}
+
+/* Pausing the animation and setting a static color on hover */
+.menuStream:hover .menuMatrixText {
+    animation-play-state: paused;
+    color: #FFFFFF; /* Set a static color on hover */
+}
+
+/* Styling the console */
+.console {
+    position: absolute;
+    top: 100%; /* Position the console directly under the parent menu item */
+    left: 0; /* Align the left edge of the console with the left edge of the parent menu item */
+    display: none;
+    background-color: rgba(0, 0, 0, 0.8);
+    margin: 10px 0 0 0; /* Remove the left margin */
+    border-radius: 10px;
+    z-index: 3;
+    width: 600px; /* Set a fixed width for desktop */
+    max-width: 100vw; /* Ensure the console doesn't exceed the viewport width */
+    height: 300px;
+    overflow-y: auto;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: .7em;  /*Console menu text size*/
+    color: #00FF00;
+    background-color: #000;
+}
+
+
+
+   /* Styling the menu stream for mobile and tablet */
+   .menuStream {
+    font-size: 2em; /* Reduce the font size */
+    margin-bottom: 20px; /* Add some space below each item */
+}  
+/* Styling the console command and console output */
+.consoleCommand, .consoleOutput div {
+    margin-bottom: 5px; /* Space between lines */
+}
+
+
+/* Styling the unordered list */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Defining a keyframes animation for the console cursor */
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Applying the animation to the console cursor */
+.consoleCursor {
+    animation: blink 533ms infinite;
+    display: inline-block;
+    background-color: #00FF00;
+    width: 18px;
+    height: .90em;
+}
+
+/* Styling the console command */
+.consoleCommand {
+    color: #00FF00;
+    display: block;
+}
+
+/* Styling the console output */
+.consoleOutput {
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+
+@media only screen and (max-width: 767px) {
+    /* Mobile styles */
+    .console {
+        position: fixed; /* Position the console relative to the viewport */
+        top: 60px; /* Adjust this value based on the height of #menuOverlay */
+        left: 0; /* Align the console to the left edge of the viewport */
+        width: 100%; /* Take up the full width */
+        height: calc(100vh - 60px); /* Take up the rest of the viewport height */
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    /* Tablet styles */
+    .console {
+        position: fixed; /* Position the console relative to the viewport */
+        top: 60px; /* Adjust this value based on the height of #menuOverlay */
+        left: 0; /* Align the console to the left edge of the viewport */
+        width: 100%; /* Take up the full width */
+        height: calc(100vh - 60px); /* Take up the rest of the viewport height */
+    }
+}
+/* Hamburger button */
+#hamburgerButton {
+    display: none; /* Hidden by default */
+    background-color: transparent; /* Make the button background transparent */
+    border: none; /* Remove the default button border */
+    color: white; /* Make the hamburger icon white */
+    font-size: 2em; /* Make the hamburger icon larger */
+    padding: 10px; /* Add some space around the hamburger icon */
+}
+
+
+@media only screen and (max-width: 1024px) {
+    /* Show the hamburger button on smaller screens */
+    #hamburgerButton {
+        display: block;
+    }
+}
+@media only screen and (max-width: 767px) {
+    /* Mobile styles */
+    .menuStream {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    /* Tablet styles */
+    .menuStream {
+        display: none;
+    }
+}
+@media only screen and (max-width: 1024px) {
+    /* Mobile and Tablet styles */
+    .menuStream {
+        display: none; /* Hidden by default */
+        width: 100%; /* Take up the full width of the menu overlay */
+        padding: 10px 0; /* Add some vertical padding */
+    }
+
+    #hamburgerButton {
+        display: block; /* Show the hamburger button */
+    }
+}
+@media only screen and (max-width: 1024px) {
+    /* Mobile and Tablet styles */
+    #menuOverlay {
+        flex-direction: column; /* Stack the items vertically */
+        justify-content: flex-start; /* Align items to the top */
+        align-items: center; /* Center items horizontally */
+        padding-top: 10px; /* Add some padding at the top */
+    }
+
+    .menuStream {
+        display: none; /* Hidden by default */
+        width: 100%; /* Take up the full width of the menu overlay */
+        padding: 10px 0; /* Adjust vertical padding */
+        text-align: center; /* Center the text */
+    }
+
+    #hamburgerButton {
+        display: block; /* Show the hamburger button */
+        cursor: pointer;
+    }
+
+    .console {
+        max-height: 15vh; /* Limit the height of the console to 50% of the viewport height */
+        overflow-y: auto; /* Add a scrollbar if the content exceeds the max height */
+        position: static; /* Position the console in the normal flow of the document */
+    }
+
+    .hamburger-line {
+        width: 30px;
+        height: 4px;
+        background-color: #00FF00; /* Matrix green */
+        margin: 6px 0;
+        position: relative;
+        left: 0;
+        transition: left 1s ease-in-out;
+        animation: slide 1s infinite;
+    }
+    
+    .hamburger-line.middle {
+        transition: left 1s ease-in-out;
+        animation: slide-middle 1s infinite;
+    }
+
+    @keyframes slide {
+        0% { left: 0; }
+        50% { left: 10px; }
+        100% { left: 0; }
+    }
+
+    @keyframes slide-middle {
+        0% { left: 0; }
+        50% { left: -10px; }
+        100% { left: 0; }
+    }
+    @keyframes slide-right-middle {
+        0% { left: 0; }
+        50% { left: 10px; }
+        100% { left: 0; }
+    }
+
+    .hamburger-line.middle.right {
+        transition: left 1s ease-in-out;
+        animation: slide-right-middle 1s infinite;
+    }
+}
