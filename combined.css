@@ -34,7 +34,7 @@ canvas {
     display: flex;
     flex-direction: row; /* Align the items horizontally */
     justify-content: flex-start; /* Align items to the left */
-    align-items: center; /* Center items vertically */
+    /* align-items: center; Center items vertically */
     z-index: 2;  /* Ensure the menu overlay is above the canvas */
     padding: 10px; /* Add some padding around the items */
     background-color: #000; /* Add a background color */
