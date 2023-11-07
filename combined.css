@@ -217,10 +217,9 @@ ul {
     }
 
     .menuStream {
-        display: none; /* Hidden by default */
-        width: 100%; /* Take up the full width of the menu overlay */
-        padding: 10px 0; /* Adjust vertical padding */
-        text-align: center; /* Center the text */
+        line-height: 1.5; /* Adjust as needed */
+        padding: 0;
+        margin: 0;
     }
 
     #hamburgerButton {
